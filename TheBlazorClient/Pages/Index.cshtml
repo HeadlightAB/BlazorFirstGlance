@@ -1,7 +1,31 @@
 ﻿@page "/"
+@inject HttpClient ApiClient
 
 <h1>Hello, world!</h1>
 
 Welcome to your new app.
 
-<SurveyPrompt Title="How is Blazor working for you?" />
+<h1>Here goes the values</h1>
+@if (values == null)
+{
+    <p>Nothing yet...</p>
+}
+else
+{
+    <ul>
+        @foreach (var value in values)
+        {
+            <li>@value</li>
+        }
+    </ul>
+}
+
+@functions
+{
+    string[] values;
+
+    protected override async Task OnInitAsync()
+    {
+        values = await ApiClient.GetJsonAsync<string[]>("/api/values");
+    }
+}
