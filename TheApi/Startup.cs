@@ -42,6 +42,8 @@ namespace TheApi
 
             app.UseHttpsRedirection();
             app.UseMvc();
+
+            app.UseBlazor<TheBlazorClient.Startup>();
         }
     }
 }
