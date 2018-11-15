@@ -43,7 +43,7 @@ namespace TheApi
             app.UseHttpsRedirection();
             app.UseMvc();
 
-            app.UseBlazor<TheBlazorClient.Startup>();
+            app.Map("/client", c => c.UseBlazor<TheBlazorClient.Startup>());
         }
     }
 }
